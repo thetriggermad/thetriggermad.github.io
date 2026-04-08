@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css.css">
+<script src="myscripts.js"></script>
+<title>HTML CSS JS</title>
+</head>
+<body>
+
+<video autoplay muted loop id="myVideo">
+  <source src="bg4.mp4" type="video/mp4">
+</video>
+<style> body { background-color: rgb(0,0,0); } </style> 
+<h1 id="welcome"><br />Trigger!! :3</h1>
+<img id="pp" src="PP.jpg">
+<p class="strokeme">Hii! im trigger, some random franco-moroccan transfem mf<br />who uses she/they and makes music <br />in her dirty room with her dirty pc.<br />Im also having some issues with my transition<br />so if you wanna help me by donating<br />or sharing my jackpot you can find it here :3.</p>
+<a href="https://www.gofundme.com/f/aidez-ma-transition-transfem"><button class="strokebutton">jackpot</button></a>
+<p class="strokeme"><br />If you also would like to contact me, here are my socials:</p>
+
+<a href="https://x.com/TheTriggerrz"><button class="strokebutton">twitter</button></a><br />
+
+<a href="https://www.instagram.com/trigger0921/"><button class="strokebutton">instagram</button></a> <br />
+
+<a href="https://discord.com/users/759431307557208071"><button class="strokebutton">discord</button></a><br />
+
+<a href="https://www.tiktok.com/@thetriggered"><button class="strokebutton">tiktok</button></a>
+<img id="ht1" src="EXP_HT_01.png" />
+<img id="tex1" src="EXP_TEXTURE_02.png" />
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const img = document.getElementById('ht1');
+  const img2 = document.getElementById('tex1');
+
+  document.addEventListener('mousemove', (e) => {
+    const x1 = (e.clientX / window.innerWidth - 0.5) * 15;
+    const y1 = (e.clientY / window.innerHeight - 0.5) * 15;
+    img.style.transform = `translate(${x1}px, ${y1}px) scale(1.05)`;
+
+    const x2 = (e.clientX / window.innerWidth - 0.5) * 30;
+    const y2 = (e.clientY / window.innerHeight - 0.5) * 30;
+    img2.style.transform = `translate(${x2}px, ${y2}px) scale(1.1)`;
+  });
+});
+</script>
+
+</body>
+</html>
