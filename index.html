@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('mousemove', (e) => {
     const x1 = (e.clientX / window.innerWidth - 0.5) * 15;
     const y1 = (e.clientY / window.innerHeight - 0.5) * 15;
-    img.style.transform = `translate(${x1}px, ${y1}px) scale(1.05)`;
+    img.style.transform = `translate(${x1}px, ${y1}px) scale(1.01)`;
 
     const x2 = (e.clientX / window.innerWidth - 0.5) * 30;
     const y2 = (e.clientY / window.innerHeight - 0.5) * 30;
-    img2.style.transform = `translate(${x2}px, ${y2}px) scale(1.1)`;
+    img2.style.transform = `translate(${x2}px, ${y2}px) scale(1.05)`;
   });
 });
 </script>
