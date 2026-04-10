@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css.css">
+<script src="js.js" type="text/javascript"></script>
+<title>Trigger - PORTFOLIO</title>
+<link rel="icon" type="image/x-icon" href="imagesvideos/PP.jpg">
+</head>
+<body>
+
+<video autoplay muted loop id="myVideo">
+  <source id="vid" src="imagesvideos/bg4.mp4" type="video/mp4">
+</video>
+<style> body { background-color: rgb(0,0,0); } </style> 
+<h1 id="welcome"><br />Trigger!! :3 - PORTFOLIO</h1>
+
+<p class="strokeme">Here is my portfolio where i put my music in:</p><br />
+
+
+<img id="ht1" src="imagesvideos/EXP_HT_01.png" />
+<img id="tex1" src="imagesvideos/EXP_TEXTURE_02.png" />
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('audio[id]').forEach(audio => {
+    const img = document.getElementById('ht1');
+    const img2 = document.getElementById('tex1');
+    const vid = document.getElementById('myVideo');
+    const aud = document.getElementById('audio');
+
+    document.addEventListener('mousemove', (e) => {
+      const x1 = (e.clientX / window.innerWidth - 0.5) * 15;
+      const y1 = (e.clientY / window.innerHeight - 0.5) * 15;
+      img.style.transform = `translate(${x1}px, ${y1}px) scale(1.01)`;
+
+      const x2 = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y2 = (e.clientY / window.innerHeight - 0.5) * 30;
+      img2.style.transform = `translate(${x2}px, ${y2}px) scale(1.05)`;
+
+      const x3 = (e.clientX / window.innerWidth - 0) * 1;
+      const y3 = (e.clientY / window.innerHeight - 0) * 1;
+      vid.style.transform = `translate(${x2}px, ${y2}px) scale(1.00005)`;
+
+      const x4 = (e.clientX / window.innerWidth - 0.5) * 1;
+      const y4 = (e.clientY / window.innerHeight - 0.5) * 1;
+      aud.style.transform = `translate(${x2}px, ${y2}px) scale(1.00005)`;
+    });
+  });
+  
+});
+
+
+</script>
+<style>
+.ap-card{display:flex;align-items:center;gap:16px;background:rgba(15,15,15,0.7);border:1px solid rgba(0,0,0,.1);border-radius:16px;padding:0.75rem 1.5rem;max-width:340px;margin:0 auto}
+.ap-play{width:44px;height:44px;min-width:44px;border-radius:50%;background:#7F77DD;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s,transform .1s}
+.ap-play:hover{background:#534AB7}.ap-play:active{transform:scale(.95)}
+.ap-mid{flex:1;display:flex;flex-direction:column;gap:8px}
+.ap-canvas{display:block;width:100%;height:40px;border-radius:4px}
+.ap-prog{position:relative;height:4px;background:#eee;border-radius:2px;cursor:pointer}
+.ap-fill{height:100%;border-radius:2px;background:#7F77DD;width:0%;pointer-events:none}
+.ap-thumb{position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:#7F77DD;left:0%}
+.ap-prog:hover .ap-thumb{box-shadow:0 0 0 4px rgba(127,119,221,.22)}
+.ap-time{display:flex;justify-content:space-between;font-size:12px;font-family: warioware, sans-serif;color:#999}
+</style>
+
+<script>
+function buildPlayer(audio) {
+  if (audio.id !== 'customplr') return;
+  if (!audio.src || audio.dataset.apBuilt) return;
+  audio.dataset.apBuilt = true;
+  audio.style.display = 'none';
+
+  const card = document.createElement('div');
+  card.className = 'ap-card';
+  card.innerHTML = `
+    <button class="ap-play">
+      <svg class="ap-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+    </button>
+    <div class="ap-mid">
+      <canvas class="ap-canvas" height="40"></canvas>
+      <div class="ap-prog">
+        <div class="ap-fill"></div>
+        <div class="ap-thumb"></div>
+      </div>
+      <div class="ap-time">
+        <span class="ap-cur">0:00</span>
+        <span class="ap-tot">0:00</span>
+      </div>
+    </div>`;
+  audio.insertAdjacentElement('afterend', card);
+
+  const btn    = card.querySelector('.ap-play');
+  const icon   = card.querySelector('.ap-icon');
+  const fill   = card.querySelector('.ap-fill');
+  const thumb  = card.querySelector('.ap-thumb');
+  const prog   = card.querySelector('.ap-prog');
+  const cur    = card.querySelector('.ap-cur');
+  const tot    = card.querySelector('.ap-tot');
+  const canvas = card.querySelector('.ap-canvas');
+  const ctx    = canvas.getContext('2d');
+  let playing  = false, dragging = false;
+
+  const fmt = s => `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+
+  function resize() { canvas.width = canvas.offsetWidth * devicePixelRatio; canvas.height = canvas.offsetHeight * devicePixelRatio; }
+  resize(); window.addEventListener('resize', resize);
+
+  audio.addEventListener('loadedmetadata', () => tot.textContent = fmt(audio.duration));
+  audio.addEventListener('timeupdate', () => {
+    const p = audio.currentTime / audio.duration * 100;
+    fill.style.width = p + '%';
+    thumb.style.left = p + '%';
+    cur.textContent  = fmt(audio.currentTime);
+  });
+  audio.addEventListener('ended', () => setPlaying(false));
+
+  function setPlaying(p) {
+    playing = p;
+    p ? audio.play() : audio.pause();
+    icon.innerHTML = p
+      ? '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'
+      : '<polygon points="5 3 19 12 5 21 5 3"/>';
+  }
+
+  btn.onclick = () => setPlaying(!playing);
+
+  function scrub(e) {
+    const r = prog.getBoundingClientRect();
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+    audio.currentTime = Math.max(0, Math.min(1, x / r.width)) * audio.duration;
+  }
+  prog.addEventListener('mousedown',  e => { dragging = true; scrub(e); });
+  document.addEventListener('mousemove',  e => { if (dragging) scrub(e); });
+  document.addEventListener('mouseup',  () => dragging = false);
+  prog.addEventListener('touchstart', e => scrub(e), { passive: true });
+  prog.addEventListener('touchmove',  e => scrub(e), { passive: true });
+
+  const bars = Array.from({ length: 40 }, (_, i) => ({ base: 0.2 + Math.random() * 0.7, phase: i * 0.45, speed: 0.6 + Math.random() * 0.8 }));
+  function drawVis() {
+    const t = performance.now() / 1000, w = canvas.width, h = canvas.height, slot = w / bars.length, bw = slot * 0.55;
+    ctx.clearRect(0, 0, w, h);
+    bars.forEach((b, i) => {
+      const amp = playing ? 1 : 0.12, ht = b.base * h * 0.65 + Math.sin(t * b.speed + b.phase) * h * 0.18 * amp;
+      ctx.globalAlpha = 0.75; ctx.fillStyle = '#7F77DD';
+      ctx.beginPath(); ctx.roundRect(slot * i + (slot - bw) / 2, h / 2 - ht / 2, bw, ht, 2); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawVis);
+  }
+  drawVis();
+}
+
+// build players for all existing audio tags
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('audio[src]').forEach(buildPlayer);
+});
+
+// also watch for any audio tags added dynamically after load
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(m => m.addedNodes.forEach(node => {
+    if (node.tagName === 'AUDIO' && node.src) buildPlayer(node);
+  }));
+});
+observer.observe(document.body, { childList: true, subtree: true });
+</script>
+
+
+<audio controls id="customplr" src="music/v1.mp3"></audio><br />
+<audio controls id="customplr" src="music/v2.mp3"></audio><br />
+<audio controls id="customplr" src="music/v3.mp3"></audio><br />
+<audio controls id="customplr" src="music/v4.mp3"></audio><br />
+<audio controls id="customplr" src="music/v5.mp3"></audio><br /><br />
+
+<a style="font-size: 40px;" href="index.html"><button class="strokebutton" style="font-size: 20px;">go back</button></a><br />
+</body>
+</html>
