@@ -22,31 +22,18 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('audio[id]').forEach(audio => {
-    const img = document.getElementById('ht1');
-    const img2 = document.getElementById('tex1');
-    const vid = document.getElementById('myVideo');
-    const aud = document.getElementById('audio');
+  const img = document.getElementById('ht1');
+  const img2 = document.getElementById('tex1');
 
-    document.addEventListener('mousemove', (e) => {
-      const x1 = (e.clientX / window.innerWidth - 0.5) * 15;
-      const y1 = (e.clientY / window.innerHeight - 0.5) * 15;
-      img.style.transform = `translate(${x1}px, ${y1}px) scale(1.01)`;
+  document.addEventListener('mousemove', (e) => {
+    const x1 = (e.clientX / window.innerWidth - 0.5) * 15;
+    const y1 = (e.clientY / window.innerHeight - 0.5) * 15;
+    img.style.transform = `translate(${x1}px, ${y1}px) scale(1.01)`;
 
-      const x2 = (e.clientX / window.innerWidth - 0.5) * 30;
-      const y2 = (e.clientY / window.innerHeight - 0.5) * 30;
-      img2.style.transform = `translate(${x2}px, ${y2}px) scale(1.05)`;
-
-      const x3 = (e.clientX / window.innerWidth - 0) * 1;
-      const y3 = (e.clientY / window.innerHeight - 0) * 1;
-      vid.style.transform = `translate(${x2}px, ${y2}px) scale(1.00005)`;
-
-      const x4 = (e.clientX / window.innerWidth - 0.5) * 1;
-      const y4 = (e.clientY / window.innerHeight - 0.5) * 1;
-      aud.style.transform = `translate(${x2}px, ${y2}px) scale(1.00005)`;
-    });
+    const x2 = (e.clientX / window.innerWidth - 0.5) * 30;
+    const y2 = (e.clientY / window.innerHeight - 0.5) * 30;
+    img2.style.transform = `translate(${x2}px, ${y2}px) scale(1.05)`;
   });
-  
 });
 
 
