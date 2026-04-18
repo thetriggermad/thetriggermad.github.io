@@ -24,28 +24,29 @@
 
 <a href="https://discord.com/users/759431307557208071"><button class="strokebutton">discord</button></a><br />
 
+<a href="https://open.spotify.com/intl-fr/artist/5ORFSXfUAYWzi6Hss3G6x6"><button class="strokebutton">spotify</button></a><br />
+
 <a href="https://www.tiktok.com/@thetriggered"><button class="strokebutton">tiktok</button></a>
-<br>
-<p class="strokeme">If you would like to check out my portfolio you can find it here!</p><br />
+<p class="strokeme">If you would like to check out my portfolio you can find it here!</p>
 
-<a style="font-size: 40px;" href="portfolio.html"><button class="strokebutton" style="font-size: 25px;">portfolio</button></a><br />
+<a style="font-size: 40px;" href="portfolio.html"><button class="strokebutton" style="font-size: 25px;">portfolio</button></a>
 
 
-<img id="ht1" src="imagesvideos/EXP_HT_01.png" />
+<img id="ht1" src="imagesvideos/EXP_HT_05.png" />
 <img id="tex1" src="imagesvideos/EXP_TEXTURE_02.png" />
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const img = document.getElementById('ht1');
   const img2 = document.getElementById('tex1');
-
+  
   document.addEventListener('mousemove', (e) => {
     const x1 = (e.clientX / window.innerWidth - 0.5) * 15;
     const y1 = (e.clientY / window.innerHeight - 0.5) * 15;
-    img.style.transform = `translate(${x1}px, ${y1}px) scale(1.01)`;
+    img.style.transform = `translate(${x1}px, ${y1}px) scale(1.00)`;
 
     const x2 = (e.clientX / window.innerWidth - 0.5) * 30;
     const y2 = (e.clientY / window.innerHeight - 0.5) * 30;
-    img2.style.transform = `translate(${x2}px, ${y2}px) scale(1.05)`;
+    img2.style.transform = `translate(${x2}px, ${y2}px) scale(1.03)`;
   });
 });
 
