@@ -17,22 +17,22 @@
 <p class="strokeme">Here is my portfolio where i put my music in:</p><br />
 
 
-<img id="ht1" src="imagesvideos/EXP_HT_01.png" />
+<img id="ht1" src="imagesvideos/EXP_HT_05.png" />
 <img id="tex1" src="imagesvideos/EXP_TEXTURE_02.png" />
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const img = document.getElementById('ht1');
   const img2 = document.getElementById('tex1');
-
+  
   document.addEventListener('mousemove', (e) => {
     const x1 = (e.clientX / window.innerWidth - 0.5) * 15;
     const y1 = (e.clientY / window.innerHeight - 0.5) * 15;
-    img.style.transform = `translate(${x1}px, ${y1}px) scale(1.01)`;
+    img.style.transform = `translate(${x1}px, ${y1}px) scale(1.00)`;
 
     const x2 = (e.clientX / window.innerWidth - 0.5) * 30;
     const y2 = (e.clientY / window.innerHeight - 0.5) * 30;
-    img2.style.transform = `translate(${x2}px, ${y2}px) scale(1.05)`;
+    img2.style.transform = `translate(${x2}px, ${y2}px) scale(1.03)`;
   });
 });
 
@@ -40,14 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <style>
 .ap-card{display:flex;align-items:center;gap:16px;background:rgba(15,15,15,0.7);border:1px solid rgba(0,0,0,.1);border-radius:16px;padding:0.75rem 1.5rem;max-width:340px;margin:0 auto}
-.ap-play{width:44px;height:44px;min-width:44px;border-radius:50%;background:#7F77DD;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s,transform .1s}
-.ap-play:hover{background:#534AB7}.ap-play:active{transform:scale(.95)}
+.ap-play{width:44px;height:44px;min-width:44px;border-radius:50%;background:rgba(25,100,150,1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s,transform .1s}
+.ap-play:hover{background:rgba(25,75,125,1)}.ap-play:active{transform:scale(.95)}
 .ap-mid{flex:1;display:flex;flex-direction:column;gap:8px}
 .ap-canvas{display:block;width:100%;height:40px;border-radius:4px}
 .ap-prog{position:relative;height:4px;background:#eee;border-radius:2px;cursor:pointer}
-.ap-fill{height:100%;border-radius:2px;background:#7F77DD;width:0%;pointer-events:none}
-.ap-thumb{position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:#7F77DD;left:0%}
-.ap-prog:hover .ap-thumb{box-shadow:0 0 0 4px rgba(127,119,221,.22)}
+.ap-fill{height:100%;border-radius:2px;background:rgba(25,100,150,1);width:0%;pointer-events:none}
+.ap-thumb{position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:rgba(25,70,120,1);left:0%}
+.ap-prog:hover .ap-thumb{box-shadow:0 0 0 4px rgba(25,100,150,0.15)}
 .ap-time{display:flex;justify-content:space-between;font-size:12px;font-family: warioware, sans-serif;color:#999}
 </style>
 
@@ -159,8 +159,7 @@ observer.observe(document.body, { childList: true, subtree: true });
 <audio controls id="customplr" src="music/v2.mp3"></audio><br />
 <audio controls id="customplr" src="music/v3.mp3"></audio><br />
 <audio controls id="customplr" src="music/v4.mp3"></audio><br />
-<audio controls id="customplr" src="music/v5.mp3"></audio><br />
-<audio controls id="customplr" src="music/v6.mp3"></audio><br /><br />
+<audio controls id="customplr" src="music/v5.mp3"></audio><br /><br />
 
 <a style="font-size: 40px;" href="index.html"><button class="strokebutton" style="font-size: 20px;">go back</button></a><br />
 </body>
